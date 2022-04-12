@@ -248,7 +248,7 @@
         },
         "diagnosticsProfile": {
           "bootDiagnostics": {
-            "enabled": false
+            "disabled": true
           }
         }
       },
