@@ -19,5 +19,5 @@ steps:
     resourceGroupName: 'adasdax'
     location: 'West Europe'
     templateLocation: 'URL of the file'
-    csmFileLink: 'https://raw.githubusercontent.com/TadasRudokasCloudeon/Pipeline/master/template.json'
+    csmFileLink: 'https://raw.githubusercontent.com/TadasRudokasCloudeon/Pipeline/master/VM.json'
     deploymentMode: 'Incremental'
