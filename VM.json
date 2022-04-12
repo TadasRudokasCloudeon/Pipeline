@@ -167,7 +167,7 @@
         "PPImagePublisher": "Canonical",
         "PPImageOffer": "UbuntuServer",
         "PPOSDiskName": "PPOSDisk",
-        "PPVmSize": "Standard_D1",
+        "PPVmSize": "Standard_DS1_v2",
         "PPVnetID": "[resourceId('Microsoft.Network/virtualNetworks', 'vnet')]",
         "PPSubnetRef": "[concat(variables('PPVnetID'), '/subnets/', variables('vnetSubnet1Name'))]",
         "PPStorageAccountContainerName": "vhds",
