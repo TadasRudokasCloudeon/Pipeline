@@ -23,7 +23,7 @@ steps:
     location: 'West Europe'
     templateLocation: 'URL of the file'
     csmFileLink: 'https://github.com/TadasRudokasCloudeon/Pipeline/blob/master/VM.json'
-    overrideParameters: '-projectName [EnterAProjectName]'
+    overrideParameters: '-projectName Tadulis'
     deploymentMode: 'Incremental'
     deploymentName: 'DeployPipelineTemplate'
 
