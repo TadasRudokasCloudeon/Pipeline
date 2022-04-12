@@ -1,0 +1,172 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "templateName": {
+            "type": "string",
+			"defaultValue": "template",
+            "minLength": 1
+        },
+        "templateAdminUserName": {
+            "type": "string",
+			"defaultValue": "azureuser",
+            "minLength": 1
+        },
+        "templateAdminPassword": {
+            "type": "securestring",
+			"defaultValue": "SLAPTASdsadasd125554652"
+        },
+        "templateWindowsOSVersion": {
+            "type": "string",
+            "defaultValue": "2019-Datacenter",
+            "allowedValues": [
+                "2012-R2-Datacenter",
+				"2019-Datacenter"
+            ]
+        },
+        "templateAccType": {
+            "type": "string",
+            "defaultValue": "Standard_LRS",
+            "allowedValues": [
+                "Standard_LRS",
+                "Standard_ZRS",
+                "Standard_GRS",
+                "Standard_RAGRS",
+                "Premium_LRS"
+            ]
+        }
+    },
+    "resources": [
+        {
+            "name": "[variables('templateNicName')]",
+            "type": "Microsoft.Network/networkInterfaces",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2015-06-15",
+            "dependsOn": [
+                "[concat('Microsoft.Network/virtualNetworks/', 'vnet')]"
+            ],
+            "tags": {
+                "displayName": "templateNic"
+            },
+            "properties": {
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "properties": {
+                            "privateIPAllocationMethod": "Dynamic",
+                            "subnet": {
+                                "id": "[variables('templateSubnetRef')]"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "[parameters('templateName')]",
+            "type": "Microsoft.Compute/virtualMachines",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2015-06-15",
+            "dependsOn": [
+                "[concat('Microsoft.Storage/storageAccounts/', variables('templateAccName'))]",
+                "[concat('Microsoft.Network/networkInterfaces/', variables('templateNicName'))]"
+            ],
+            "tags": {
+                "displayName": "template"
+            },
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "[variables('templateVmSize')]"
+                },
+                "osProfile": {
+                    "computerName": "[parameters('templateName')]",
+                    "adminUsername": "[parameters('templateAdminUsername')]",
+                    "adminPassword": "[parameters('templateAdminPassword')]"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "[variables('templateImagePublisher')]",
+                        "offer": "[variables('templateImageOffer')]",
+                        "sku": "[parameters('templateWindowsOSVersion')]",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "name": "templateOSDisk",
+                        "vhd": {
+                            "uri": "[concat('http://', variables('templateAccName'), '.blob.core.windows.net/', variables('templateStorageAccountContainerName'), '/', variables('templateOSDiskName'), '.vhd')]"
+                        },
+                        "caching": "ReadWrite",
+                        "createOption": "FromImage"
+                    }
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('templateNicName'))]"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "[variables('templateAccName')]",
+            "type": "Microsoft.Storage/storageAccounts",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2015-06-15",
+            "dependsOn": [],
+            "tags": {
+                "displayName": "templateAcc"
+            },
+            "properties": {
+                "accountType": "[parameters('templateAccType')]"
+            }
+        },
+        {
+            "name": "vnet",
+            "type": "Microsoft.Network/virtualNetworks",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2015-06-15",
+            "dependsOn": [],
+            "tags": {
+                "displayName": "vnet"
+            },
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[variables('vnetPrefix')]"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "[variables('vnetSubnet1Name')]",
+                        "properties": {
+                            "addressPrefix": "[variables('vnetSubnet1Prefix')]"
+                        }
+                    },
+                    {
+                        "name": "[variables('vnetSubnet2Name')]",
+                        "properties": {
+                            "addressPrefix": "[variables('vnetSubnet2Prefix')]"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "variables": {
+        "templateImagePublisher": "MicrosoftWindowsServer",
+        "templateImageOffer": "WindowsServer",
+        "templateOSDiskName": "templateOSDisk",
+        "templateVmSize": "Standard_DS1_v2",
+        "templateVnetID": "[resourceId('Microsoft.Network/virtualNetworks', 'vnet')]",
+        "templateSubnetRef": "[concat(variables('templateVnetID'), '/subnets/', variables('vnetSubnet1Name'))]",
+        "templateStorageAccountContainerName": "vhds",
+        "templateNicName": "[concat(parameters('templateName'), 'NetworkInterface')]",
+        "templateAccName": "[concat('templateAcc', uniqueString(resourceGroup().id))]",
+        "vnetPrefix": "10.0.0.0/16",
+        "vnetSubnet1Name": "Subnet-1",
+        "vnetSubnet1Prefix": "10.0.0.0/24",
+        "vnetSubnet2Name": "Subnet-2",
+        "vnetSubnet2Prefix": "10.0.1.0/24"
+    }
+}
