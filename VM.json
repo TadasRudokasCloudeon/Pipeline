@@ -25,7 +25,6 @@
     },
     "authenticationType": {
       "type": "string",
-      "defaultValue": "Slaptas12345",
       "allowedValues": [
         "sshPublicKey",
         "password"
