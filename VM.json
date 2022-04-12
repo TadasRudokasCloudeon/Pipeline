@@ -24,6 +24,13 @@
         "description": "Password for the Virtual Machine."
       }
     },
+    "dnsLabelPrefix": {
+      "type": "string",
+      "defaultValue": "[toLower(format('{0}-{1}', parameters('vmName'), uniqueString(resourceGroup().id, parameters('vmName'))))]",
+      "metadata": {
+        "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
+      }
+    },
     "publicIpName": {
       "type": "string",
       "defaultValue": "myPublicIP",
@@ -111,7 +118,10 @@
         "name": "[parameters('publicIpSku')]"
       },
       "properties": {
-        "publicIPAllocationMethod": "[parameters('publicIPAllocationMethod')]"
+        "publicIPAllocationMethod": "[parameters('publicIPAllocationMethod')]",
+        "dnsSettings": {
+          "domainNameLabel": "[parameters('dnsLabelPrefix')]"
+        }
       }
     },
     {
@@ -230,5 +240,11 @@
         "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
       ]
     }
-  ]
+  ],
+  "outputs": {
+    "hostname": {
+      "type": "string",
+      "value": "VALIO"
+    }
+  }
 }
