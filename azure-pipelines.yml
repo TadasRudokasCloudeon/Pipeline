@@ -1,0 +1,26 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'MPN_Tadas_Rudokas(2eea6a97-0c3b-436d-8419-16b9d2cdd02f)'
+    subscriptionId: '2eea6a97-0c3b-436d-8419-16b9d2cdd02f'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'PipelineLab'
+    location: 'West Europe'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://github.com/TadasRudokasCloudeon/Pipeline/blob/master/VM.json'
+    deploymentMode: 'Incremental'
+    deploymentName: 'aaa'
