@@ -22,13 +22,8 @@ steps:
     resourceGroupName: 'PipelineLab'
     location: 'West Europe'
     templateLocation: 'URL of the file'
-    csmFileLink: 'https://github.com/TadasRudokasCloudeon/Pipeline/blob/fd2d1a531f82c6df172bddd4b5ea539c12e7da0f/VM.json'
+    csmFileLink: 'https://github.com/TadasRudokasCloudeon/Pipeline/blob/master/VM.json'
     overrideParameters: '-projectName [EnterAProjectName]'
     deploymentMode: 'Incremental'
     deploymentName: 'DeployPipelineTemplate'
 
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
