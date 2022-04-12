@@ -3,99 +3,76 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "location": {
-            "value": "westeurope"
+            "type": "string"
         },
         "networkInterfaceName": {
-            "value": "vm1641"
+            "type": "string"
         },
         "enableAcceleratedNetworking": {
-            "value": true
+            "type": "bool"
         },
         "networkSecurityGroupName": {
-            "value": "Vm1-nsg"
+            "type": "string"
         },
         "networkSecurityGroupRules": {
-            "value": [
-                {
-                    "name": "RDP",
-                    "properties": {
-                        "priority": 300,
-                        "protocol": "TCP",
-                        "access": "Allow",
-                        "direction": "Inbound",
-                        "sourceAddressPrefix": "*",
-                        "sourcePortRange": "*",
-                        "destinationAddressPrefix": "*",
-                        "destinationPortRange": "3389"
-                    }
-                }
-            ]
+            "type": "array"
         },
         "subnetName": {
-            "value": "default"
+            "type": "string"
         },
         "virtualNetworkName": {
-            "value": "PipelineLab-vnet"
+            "type": "string"
         },
         "addressPrefixes": {
-            "value": [
-                "10.0.0.0/16"
-            ]
+            "type": "array"
         },
         "subnets": {
-            "value": [
-                {
-                    "name": "default",
-                    "properties": {
-                        "addressPrefix": "10.0.0.0/24"
-                    }
-                }
-            ]
+            "type": "array"
         },
         "publicIpAddressName": {
-            "value": "Vm1-ip"
+            "type": "string"
         },
         "publicIpAddressType": {
-            "value": "Dynamic"
+            "type": "string"
         },
         "publicIpAddressSku": {
-            "value": "Basic"
+            "type": "string"
         },
         "pipDeleteOption": {
-            "value": "Detach"
+            "type": "string"
         },
         "virtualMachineName": {
-            "value": "Vm1"
+            "type": "string"
         },
         "virtualMachineComputerName": {
-            "value": "Vm1"
+            "type": "string"
         },
         "virtualMachineRG": {
-            "value": "PipelineLab"
+            "type": "string"
         },
         "osDiskType": {
-            "value": "Premium_LRS"
+            "type": "string"
         },
         "osDiskDeleteOption": {
-            "value": "Delete"
+            "type": "string"
         },
         "virtualMachineSize": {
-            "value": "Standard_DS1_v2"
+            "type": "string"
         },
         "nicDeleteOption": {
-            "value": "Detach"
+            "type": "string"
         },
         "adminUsername": {
-            "value": "azure"
+            "type": "string"
         },
         "adminPassword": {
-            "value": null
+            "type": "secureString"
         },
         "patchMode": {
-            "value": "AutomaticByOS"
+            "type": "string"
         },
         "enableHotpatching": {
-            "value": false
+            "type": "bool"
         }
     },
     "variables": {

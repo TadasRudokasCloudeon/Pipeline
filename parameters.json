@@ -6,7 +6,7 @@
             "value": "westeurope"
         },
         "networkInterfaceName": {
-            "value": "vm1641"
+            "value": "vm1550"
         },
         "enableAcceleratedNetworking": {
             "value": true
@@ -35,7 +35,7 @@
             "value": "default"
         },
         "virtualNetworkName": {
-            "value": "PipelineLab-vnet"
+            "value": "asdas-vnet"
         },
         "addressPrefixes": {
             "value": [
@@ -71,7 +71,7 @@
             "value": "Vm1"
         },
         "virtualMachineRG": {
-            "value": "PipelineLab"
+            "value": "asdas"
         },
         "osDiskType": {
             "value": "Premium_LRS"
@@ -86,7 +86,7 @@
             "value": "Detach"
         },
         "adminUsername": {
-            "value": "azure"
+            "value": "azureUser"
         },
         "adminPassword": {
             "value": null
