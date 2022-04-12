@@ -230,10 +230,5 @@
         "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
       ]
     }
-  ],
-  "outputs": {
-    "hostname": {
-      "type": "string"
-    }
-  }
+  ]
 }
