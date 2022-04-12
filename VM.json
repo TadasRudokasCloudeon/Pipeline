@@ -156,7 +156,7 @@
         "templateImagePublisher": "MicrosoftWindowsServer",
         "templateImageOffer": "WindowsServer",
         "templateOSDiskName": "templateOSDisk",
-        "templateVmSize": "Standard_DS1_v2",
+        "templateVmSize": "Standard_DS2_v2",
         "templateVnetID": "[resourceId('Microsoft.Network/virtualNetworks', 'vnet')]",
         "templateSubnetRef": "[concat(variables('templateVnetID'), '/subnets/', variables('vnetSubnet1Name'))]",
         "templateStorageAccountContainerName": "vhds",
