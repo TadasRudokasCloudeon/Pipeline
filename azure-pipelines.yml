@@ -19,5 +19,5 @@ steps:
     resourceGroupName: 'PipelineLab'
     location: 'West Europe'
     templateLocation: 'URL of the file'
-    csmFileLink: 'https://raw.githubusercontent.com/len-cldn/personal/main/VM-deploy.json'
+    csmFileLink: 'https://github.com/TadasRudokasCloudeon/Pipeline/blob/master/VM.json'
     deploymentMode: 'Incremental'
