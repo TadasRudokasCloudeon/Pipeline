@@ -46,6 +46,22 @@
             ]
         }
     },
+    "variables": {
+        "PPImagePublisher": "Canonical",
+        "PPImageOffer": "UbuntuServer",
+        "PPOSDiskName": "PPOSDisk",
+        "PPVmSize": "Standard_DS1_v2",
+        "PPVnetID": "[resourceId('Microsoft.Network/virtualNetworks', 'vnet')]",
+        "PPSubnetRef": "[concat(variables('PPVnetID'), '/subnets/', variables('vnetSubnet1Name'))]",
+        "PPStorageAccountContainerName": "vhds",
+        "PPNicName": "[concat(parameters('PPName'), 'NetworkInterface')]",
+        "ppstorageName": "[concat('ppstorage', uniqueString(resourceGroup().id))]",
+        "vnetPrefix": "10.0.0.0/16",
+        "vnetSubnet1Name": "Subnet-1",
+        "vnetSubnet1Prefix": "10.0.0.0/24",
+        "vnetSubnet2Name": "Subnet-2",
+        "vnetSubnet2Prefix": "10.0.1.0/24"
+    },
     "resources": [
         {
             "name": "[variables('PPNicName')]",
@@ -162,21 +178,5 @@
                 ]
             }
         }
-    ],
-    "variables": {
-        "PPImagePublisher": "Canonical",
-        "PPImageOffer": "UbuntuServer",
-        "PPOSDiskName": "PPOSDisk",
-        "PPVmSize": "Standard_DS1_v2",
-        "PPVnetID": "[resourceId('Microsoft.Network/virtualNetworks', 'vnet')]",
-        "PPSubnetRef": "[concat(variables('PPVnetID'), '/subnets/', variables('vnetSubnet1Name'))]",
-        "PPStorageAccountContainerName": "vhds",
-        "PPNicName": "[concat(parameters('PPName'), 'NetworkInterface')]",
-        "ppstorageName": "[concat('ppstorage', uniqueString(resourceGroup().id))]",
-        "vnetPrefix": "10.0.0.0/16",
-        "vnetSubnet1Name": "Subnet-1",
-        "vnetSubnet1Prefix": "10.0.0.0/24",
-        "vnetSubnet2Name": "Subnet-2",
-        "vnetSubnet2Prefix": "10.0.1.0/24"
-    }
+    ]
 }
