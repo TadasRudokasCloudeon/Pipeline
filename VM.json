@@ -118,10 +118,7 @@
         "name": "[parameters('publicIpSku')]"
       },
       "properties": {
-        "publicIPAllocationMethod": "[parameters('publicIPAllocationMethod')]",
-        "dnsSettings": {
-          "domainNameLabel": "[parameters('dnsLabelPrefix')]"
-        }
+        "publicIPAllocationMethod": "[parameters('publicIPAllocationMethod')]"
       }
     },
     {
