@@ -20,4 +20,5 @@ steps:
     location: 'West Europe'
     templateLocation: 'URL of the file'
     csmFileLink: 'https://raw.githubusercontent.com/TadasRudokasCloudeon/Pipeline/master/VM.json'
+    overrideParameters: '-vmName "testukasIsPipeline"'
     deploymentMode: 'Incremental'
